@@ -1,0 +1,61 @@
+<html lang="pt-br">
+    <head>
+    	<title>pato</title>
+        <meta name="viewport" content="width=device-width"/>
+        <style>
+            @charset "utf-8";
+            *{margin:0;}
+            body {
+                background-color: #191919;
+                text-align: center;
+                color: white;
+                font-family: Arial;
+            }
+            #patodiv {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            #count {
+                position: absolute;
+                transform: translate(-50%, -50%);
+                top: 10%;
+                left: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="count">
+            <b>SCORE: 0</b>
+        </div>
+        <div id="patodiv">
+            <img id="pato" src="pato0.png"/>
+        </div>
+        <audio src="quack.wav" id="audio"></audio>
+        <script>
+            const  patov = document.getElementById("pato")
+            let index = 0
+            const count = document.getElementById("count")
+            let countIndex = 0
+            const audio = document.getElementById('audio')
+            patov.addEventListener("click", function(){
+                if(index+1 == 3)
+                {
+                    index = 1
+                }else {
+                    index++
+                }
+                countIndex += 2
+            	patov.src = "pato"+index+".png"
+                count.innerHTML = "<b>SCORE: "+countIndex+"</b>"
+
+                if(countIndex >= 100) {
+                    audio.play()
+                    patov.src = "pato.png"
+                    countIndex = 0
+                }
+            })
+        </script>
+    </body>
+</html>
